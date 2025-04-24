@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>玫瑰花瓣飄落</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom right, #fff1f3, #ffe5ec);
+      overflow: hidden;
+      height: 100vh;
+      position: relative;
+    }
+
+    .petal {
+      position: absolute;
+      width: 60px;
+      height: 80px;
+      background: radial-gradient(circle at 30% 30%, #ff5c8a, #b2004c);
+      border-radius: 60% 60% 60% 60% / 80% 80% 20% 20%;
+      opacity: 0.85;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg) scale(0.8);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  const total = 30;
+  for (let i = 0; i < total; i++) {
+    const petal = document.createElement('div');
+    petal.classList.add('petal');
+
+    // 隨機初始位置
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.top = -Math.random() * 100 + 'px';
+
+    // 隨機動畫時間 & 延遲
+    const duration = 5 + Math.random() * 5; // 5s ~ 10s
+    const delay = Math.random() * 5; // 0 ~ 5s
+    petal.style.animationDuration = `${duration}s`;
+    petal.style.animationDelay = `${delay}s`;
+
+    // 隨機縮放大小
+    const scale = 0.6 + Math.random() * 0.8;
+    petal.style.transform = `scale(${scale})`;
+
+    document.body.appendChild(petal);
+  }
+</script>
+
+</body>
+</html>
